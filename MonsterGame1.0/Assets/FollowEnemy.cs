@@ -7,6 +7,7 @@ public class FollowEnemy : MonoBehaviour
     public GameObject player;
     public GameObject enemy;
     public float speed;
+    
 
 
     private float latestDirectionChangeTime;
@@ -23,6 +24,7 @@ public class FollowEnemy : MonoBehaviour
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
+
         
         
         player = GameObject.Find("Player");
@@ -34,7 +36,7 @@ public class FollowEnemy : MonoBehaviour
      void calcuateNewMovementVector()
      {
     //create a random direction vector with the magnitude of 1, later multiply it with the velocity of the enemy
-     movementDirection = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized;
+     movementDirection = new Vector2(Random.Range(-1, 1), Random.Range(-1, 1).normalized);
      movementPerSecond = movementDirection * characterVelocity;
      
     }
@@ -54,12 +56,10 @@ public class FollowEnemy : MonoBehaviour
             if(player.transform.position.x>transform.position.x)
             {
                 sprite.flipX=false;
-                Debug.Log("Flipped");
             }
             else
             {
                 sprite.flipX=true;
-                Debug.Log("Not flipped");
             }
            
             
@@ -74,8 +74,6 @@ public class FollowEnemy : MonoBehaviour
         }
         transform.position = new Vector2(transform.position.x + (movementPerSecond.x * Time.deltaTime), 
         transform.position.y + (movementPerSecond.y * Time.deltaTime));
-
-        if movementDirection
         
         }
        
